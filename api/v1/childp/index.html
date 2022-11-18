@@ -4,11 +4,23 @@
         <meta name="color-scheme" content="light dark">
     </head>
     <body>
-        <pre style="word-wrap: break-word; white-space: pre-wrap;" id="jsoncapedata"></pre>
+        <pre style="word-wrap: break-word; white-space: pre-wrap;" id="jsondata"></pre>
         <script type="text/javascript">
-            const capeData = JSON.parse("./capedata.json");
-            const str = JSON.stringify(capeData);
-            document.getElementById("jsoncapedata").innerHTML = str;
+            fetch('jessepinkman.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+            function appendData(data) {
+                var mainContainer = document.getElementById("jsondata");
+                mainContainer.innerHTML += JSON.stringify(data);
+            }
         </script>
     </body>
 </html>
