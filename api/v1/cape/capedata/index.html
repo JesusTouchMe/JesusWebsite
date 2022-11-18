@@ -4,20 +4,23 @@
         <meta name="color-scheme" content="light dark">
     </head>
     <body>
-        <pre style="word-wrap: break-word; white-space: pre-wrap;">
-{
-    "capes": {
-        "cot":"https://jesustouchme.ga/api/v1/cape/capes/cot.png",
-        "unpaid":"https://jesustouchme.ga/api/v1/cape/capes/unpaid.png",
-        "cock_that_means_penis":"https://jesustouchme.ga/api/v1/cape/capes/cock_that_means_penis.png",
-        "nipple":"https://jesustouchme.ga/api/v1/cape/capes/nipple.png",
-        "shaggy":"https://jesustouchme.ga/api/v1/cape/capes/shaggy.png"
-    },
-    "owners": {
-        "e037e452cbad4bbeb124eac9e4bba1fc":"nipple",
-        "b19931290643495a885ef4a9d6923cf5":"cot"
-    }
-}
-        </pre>
+        <pre style="word-wrap: break-word; white-space: pre-wrap;" id="jsondata"></pre>
+        <script type="text/javascript">
+            fetch('capedata.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+            function appendData(data) {
+                var mainContainer = document.getElementById("jsondata");
+                mainContainer.innerHTML += JSON.stringify(data);
+            }
+        </script>
     </body>
 </html>
